@@ -8,6 +8,7 @@ const config = {
 const influxdb = new InfluxDB(config);
 
 const testInitCQ = async () => {
+  await influxdb.initDB();
   await influxdb.initCQ();
   const cqList = await influxdb.connection.showContinousQueries();
   assert(cqList.length === 1);

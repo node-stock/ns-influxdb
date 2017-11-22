@@ -1,6 +1,6 @@
 {
   "name": "ns-influxdb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "node-stock influxdb module",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "influx": "^5.0.7",
-    "toml": "^2.3.3"
+    "ns-types": "0.0.18"
   },
   "devDependencies": {
     "@types/cheerio": "0.22.2",

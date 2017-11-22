@@ -19,6 +19,17 @@ export const Candlestick_5min: ISchemaOptions = {
   }
 };
 
+export const Signal: ISchemaOptions = {
+  measurement: 'signal',
+  tags: ['symbol'],
+  fields: {
+    side: FieldType.STRING,
+    price: FieldType.FLOAT,
+    mocktime: FieldType.STRING,
+    notes: FieldType.STRING
+  }
+};
+
 export const All = [
   Tick,
   Candlestick_5min

@@ -31,6 +31,13 @@ export class InfluxDB {
     );
   }
 
+  async initDB() {
+    const dbList: string[] = await this.connection.getDatabaseNames();
+    if (!dbList.includes(this.options.database)) {
+      this.connection.createDatabase(this.options.database);
+    }
+  }
+
   async initCQ() {
     const cqList = await this.connection.showContinousQueries();
     if (!cqList.find(o => o.name === Enums.CandlestickCQ.Min5)) {
@@ -71,6 +78,20 @@ export class InfluxDB {
         close: param.close,
         high: param.high,
         low: param.low
+      }
+    }])
+  }
+
+  putSignal(param: Param.Signal) {
+    return this.connection.writeMeasurement('signal', [{
+      tags: {
+        symbol: param.symbol
+      },
+      fields: {
+        side: param.side,
+        price: param.price,
+        mocktime: param.mocktime,
+        notes: param.notes
       }
     }])
   }
