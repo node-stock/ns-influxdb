@@ -13,7 +13,7 @@ export interface IConfig {
   password?: string
 }
 
-export { Schema };
+export { Schema, Param, Enums };
 
 /**
   * @class
