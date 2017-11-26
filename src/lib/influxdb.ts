@@ -40,9 +40,9 @@ export class InfluxDB {
 
   async initCQ() {
     const cqList = await this.connection.showContinousQueries();
-    if (!cqList.find(o => o.name === Enums.CandlestickCQ.Min5)) {
+    if (!cqList.find(o => o.name === Enums.Measurement.Candlestick_5min)) {
       await this.connection.createContinuousQuery(
-        Enums.CandlestickCQ.Min5,
+        Enums.Measurement.Candlestick_5min,
         CQ.candlestick_5min(),
         this.options.database
       );
@@ -51,13 +51,13 @@ export class InfluxDB {
 
   async dropCQ() {
     const cqList = await this.connection.showContinousQueries();
-    if (cqList.find(o => o.name === Enums.CandlestickCQ.Min5)) {
-      await this.connection.dropContinuousQuery(Enums.CandlestickCQ.Min5);
+    if (cqList.find(o => o.name === Enums.Measurement.Candlestick_5min)) {
+      await this.connection.dropContinuousQuery(Enums.Measurement.Candlestick_5min);
     }
   }
 
   putTick(param: Param.Tick) {
-    return this.connection.writeMeasurement('tick', [{
+    return this.connection.writeMeasurement(Enums.Measurement.Tick, [{
       tags: {
         symbol: param.symbol
       },
@@ -83,7 +83,7 @@ export class InfluxDB {
   }
 
   putSignal(param: Param.Signal) {
-    return this.connection.writeMeasurement('signal', [{
+    return this.connection.writeMeasurement(Enums.Measurement.Signal, [{
       tags: {
         symbol: param.symbol
       },

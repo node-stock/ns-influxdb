@@ -11,6 +11,8 @@ export enum CandlestickUnit {
   Week1 = '1week'
 }
 
-export enum CandlestickCQ {
-  Min5 = 'candlestick_5min_cq'
+export enum Measurement {
+  Tick = 'tick',
+  Signal = 'signal',
+  Candlestick_5min = 'candlestick_5min'
 }
