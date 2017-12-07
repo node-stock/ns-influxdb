@@ -41,11 +41,7 @@ export class InfluxDB {
   async initCQ() {
     const cqList = await this.connection.showContinousQueries();
     if (!cqList.find(o => o.name === Enums.Measurement.Candlestick_5min)) {
-      await this.connection.createContinuousQuery(
-        Enums.Measurement.Candlestick_5min,
-        CQ.candlestick_5min(),
-        this.options.database
-      );
+      await this.connection.query(CQ.candlestick_5min(this.options.database));
     }
   }
 

@@ -1,4 +1,4 @@
-# ns-manager
+# ns-influxdb
 
 [![Build Status](https://travis-ci.org/node-stock/ns-influxdb.svg?branch=master)](https://www.travis-ci.org/node-stock/ns-influxdb)
 
