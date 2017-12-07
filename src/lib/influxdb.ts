@@ -58,7 +58,8 @@ export class InfluxDB {
         symbol: param.symbol
       },
       fields: {
-        price: param.price
+        price: param.price,
+        volume: param.volume
       }
     }])
   }

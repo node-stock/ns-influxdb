@@ -5,7 +5,8 @@ export const Tick: ISchemaOptions = {
   measurement: Enums.Measurement.Tick,
   tags: ['symbol'],
   fields: {
-    price: FieldType.FLOAT
+    price: FieldType.FLOAT,
+    volume: FieldType.FLOAT
   }
 };
 

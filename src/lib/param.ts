@@ -2,7 +2,8 @@ import * as NsTypes from 'ns-types';
 
 export interface Tick {
   symbol: string;
-  price: number;
+  price?: number;
+  volume?: number;
 }
 
 export interface Candlestick {

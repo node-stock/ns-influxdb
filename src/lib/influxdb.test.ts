@@ -32,7 +32,12 @@ const testPutTick = async () => {
     price: 2200
   });
   const res = await influxdb.connection.query('select * from ' + measurement);
-  assert(res.length === 1);
+  assert(res.length === 1); await influxdb.putTick({
+    symbol: '6553',
+    volume: 890000
+  });
+  const res2 = await influxdb.connection.query('select * from ' + measurement);
+  assert(res2.length === 2);
 }
 
 const testPutCandlestick = async () => {
