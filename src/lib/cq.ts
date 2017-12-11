@@ -1,7 +1,7 @@
 import * as Enums from './enums';
 
 export const candlestick_5min = (db: string) => `
-  CREATE CONTINUOUS QUERY ${Enums.Measurement.Candlestick_5min} ON ${db}
+  CREATE CONTINUOUS QUERY ${Enums.Measurement.Candlestick_5min} ON "${db}"
   RESAMPLE EVERY 30s
     BEGIN
       SELECT
