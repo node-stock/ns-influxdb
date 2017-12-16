@@ -12,6 +12,9 @@ const testInitCQ = async () => {
   await influxdb.initDB();
   await influxdb.initCQ();
   const cqList = await influxdb.connection.showContinousQueries();
+  const res = await influxdb.connection.query(`select * from ${Enums.Measurement.Candlestick_5min}`);
+  res.forEach(o => console.log(o))
+  // console.log('res: ', JSON.stringify(res, null, 2))
   assert(cqList.length === 1);
 }
 
@@ -29,7 +32,12 @@ const testPutTick = async () => {
     price: 2200
   });
   const res = await influxdb.connection.query('select * from ' + measurement);
-  assert(res.length === 1);
+  assert(res.length === 1); await influxdb.putTick({
+    symbol: '6553',
+    volume: 890000
+  });
+  const res2 = await influxdb.connection.query('select * from ' + measurement);
+  assert(res2.length === 2);
 }
 
 const testPutCandlestick = async () => {
@@ -48,16 +56,16 @@ const testPutCandlestick = async () => {
 
 const testPutSignal = async () => {
   const measurement = Schema.Signal.measurement;
-  //await influxdb.connection.dropMeasurement(measurement);
+  await influxdb.connection.dropMeasurement(measurement);
   await influxdb.putSignal({
     symbol: '6553',
     side: NsTypes.OrderSide.Sell,
-    price: 2500,
+    price: 2200,
     mocktime: '',
     notes: '测试买入'
   });
   const res = await influxdb.connection.query('select * from ' + measurement);
-  //assert(res.length === 1);
+  assert(res.length === 1);
 }
 
 describe('ns-influxdb', () => {

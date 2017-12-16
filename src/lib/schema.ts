@@ -1,15 +1,17 @@
 import { ISchemaOptions, FieldType } from 'influx';
+import * as Enums from './enums';
 
 export const Tick: ISchemaOptions = {
-  measurement: 'tick',
+  measurement: Enums.Measurement.Tick,
   tags: ['symbol'],
   fields: {
-    price: FieldType.FLOAT
+    price: FieldType.FLOAT,
+    volume: FieldType.FLOAT
   }
 };
 
 export const Candlestick_5min: ISchemaOptions = {
-  measurement: 'candlestick_5min',
+  measurement: Enums.Measurement.Candlestick_5min,
   tags: ['symbol'],
   fields: {
     open: FieldType.FLOAT,
@@ -20,7 +22,7 @@ export const Candlestick_5min: ISchemaOptions = {
 };
 
 export const Signal: ISchemaOptions = {
-  measurement: 'signal',
+  measurement: Enums.Measurement.Signal,
   tags: ['symbol'],
   fields: {
     side: FieldType.STRING,
@@ -32,5 +34,6 @@ export const Signal: ISchemaOptions = {
 
 export const All = [
   Tick,
+  Signal,
   Candlestick_5min
 ];
